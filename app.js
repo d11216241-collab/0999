@@ -19,19 +19,20 @@
     try {
       const response = await fetch(CARDS_URL);
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+        throw new Error(`載入失敗：HTTP ${response.status}`);
       }
       const data = await response.json();
       if (!Array.isArray(data) || data.length === 0) {
-        throw new Error('empty');
+        throw new Error('牌組資料缺失');
       }
       cards = data;
       drawBtn.disabled = false;
       drawBtn.addEventListener('click', handleDraw);
     } catch (err) {
-      const msg = err.message === 'empty'
+      const isEmptyData = err.message === '牌組資料缺失';
+      const msg = isEmptyData
         ? '牌組資料缺失，請確認 data/cards.json 是否正確。'
-        : '資料載入失敗，請重新整理頁面。';
+        : `資料載入失敗（${err.message}），請重新整理頁面。`;
       showError(msg);
       drawBtn.disabled = true;
     }
