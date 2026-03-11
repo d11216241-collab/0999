@@ -1,0 +1,314 @@
+/* =====================================================
+   塔羅單張占卜 — styles.css
+   ===================================================== */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #0f0b1e;
+  --color-surface: #1a1435;
+  --color-border: #3d2f6e;
+  --color-accent: #9b72e8;
+  --color-accent-light: #c4a8f5;
+  --color-text: #e8e0f5;
+  --color-text-muted: #8e82b0;
+  --color-upright: #7edfc4;
+  --color-reversed: #f08080;
+  --color-disclaimer: #b59adb;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header --- */
+.site-header {
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header h1 {
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  color: var(--color-accent-light);
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  margin-top: 0.4rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* --- Main --- */
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* --- Draw Button --- */
+.draw-section {
+  display: flex;
+  justify-content: center;
+}
+
+.draw-btn {
+  background: linear-gradient(135deg, #6b3fa0, #9b72e8);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.85rem 2.8rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 20px rgba(155, 114, 232, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.draw-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(155, 114, 232, 0.6);
+}
+
+.draw-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.draw-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- Result Section --- */
+.result-section {
+  width: 100%;
+}
+
+.result-placeholder {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  padding: 3rem 1rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* --- Card Result --- */
+.card-result {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Orientation badge */
+.orientation-badge {
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.orientation-badge.upright {
+  background: rgba(126, 223, 196, 0.15);
+  color: var(--color-upright);
+  border: 1px solid rgba(126, 223, 196, 0.4);
+}
+
+.orientation-badge.reversed {
+  background: rgba(240, 128, 128, 0.15);
+  color: var(--color-reversed);
+  border: 1px solid rgba(240, 128, 128, 0.4);
+}
+
+/* Card name */
+.card-name {
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  color: var(--color-accent-light);
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Card image */
+.card-image-wrapper {
+  position: relative;
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.card-image {
+  width: 180px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.card-image.reversed-img {
+  transform: rotate(180deg);
+}
+
+.card-image-placeholder {
+  width: 180px;
+  height: 300px;
+  border-radius: 8px;
+  background: var(--color-bg);
+  border: 2px dashed var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.card-image-placeholder .placeholder-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.5;
+}
+
+/* Card info */
+.card-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+/* Keywords */
+.keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.keyword-tag {
+  background: rgba(155, 114, 232, 0.12);
+  color: var(--color-accent);
+  border: 1px solid rgba(155, 114, 232, 0.3);
+  border-radius: 50px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+/* Arcana info */
+.arcana-info {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* Error message */
+.error-message {
+  text-align: center;
+  color: var(--color-reversed);
+  padding: 2rem 1rem;
+  border: 1px solid rgba(240, 128, 128, 0.3);
+  border-radius: var(--radius);
+  background: rgba(240, 128, 128, 0.05);
+}
+
+/* --- Footer / Disclaimer --- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+.disclaimer {
+  color: var(--color-disclaimer);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- Responsive (mobile) --- */
+@media (max-width: 480px) {
+  .site-header {
+    padding: 1.75rem 1rem 1rem;
+  }
+
+  .main-content {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .card-result {
+    padding: 1.5rem 1rem;
+  }
+
+  .card-image-wrapper {
+    width: 150px;
+  }
+
+  .card-image,
+  .card-image-placeholder {
+    width: 150px;
+    height: 250px;
+  }
+}
