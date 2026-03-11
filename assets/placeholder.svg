@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 400" width="240" height="400">
+  <rect width="240" height="400" rx="12" ry="12" fill="#2d2250" stroke="#7c5cbf" stroke-width="3"/>
+  <rect x="12" y="12" width="216" height="376" rx="8" ry="8" fill="none" stroke="#7c5cbf" stroke-width="1" stroke-dasharray="6,4" opacity="0.6"/>
+  <text x="120" y="190" font-family="serif" font-size="48" fill="#7c5cbf" text-anchor="middle" opacity="0.5">☽</text>
+  <text x="120" y="240" font-family="serif" font-size="14" fill="#a98fe0" text-anchor="middle">牌圖未載入</text>
+  <text x="120" y="262" font-family="serif" font-size="11" fill="#7c5cbf" text-anchor="middle" opacity="0.7">Image not available</text>
+</svg>
